@@ -20,11 +20,27 @@
     <li><?php echo $_POST['job'] ?></li>
     <li><?php echo $_POST['problems'] ?></li>
     <li><?php echo $_POST['solutions'] ?></li>
-    <?php $filename = $_POST['name'] . ".txt" ;?>
+    <?php $filename = $_POST['name'] . ".html" ;?>
+    
+    
 </ul>
 
+
+
 <?php
-file_put_contents( $filename, file_get_contents('php://input'));
+
+$content = "
+<ul>
+  <li>{$_POST['name']}</li>
+  <li>{$_POST['age']}</li>
+  <li>{$_POST['job']}</li>
+  <li>{$_POST['problems']}</li>
+  <li>{$_POST['solutions']}</li>
+</ul>
+";
+
+
+file_put_contents( $filename, $content);
 ?>
 
 <?php endif; ?>
