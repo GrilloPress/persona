@@ -11,9 +11,16 @@
 // You can change this by editing in a variable how you format the input
 // Create a variable that contains all of the $_POST data inside a variable and then
 // reference that inside file_put_contents function
+// 
+// 
+// the second file put contents creates the post items into a file called hack.html which the joined variable
+// the joined variable is created from including the heading and joining that with the content from the form
+// 
+// This is awful procedural code. It is meant to be. I'm just pissing around with PHP
 ?>
 
 <?php if ( $_POST["name"] || $_POST["age"] ): ?>
+<p>You submitted:</p>
   <ul>
     <li><?php echo $_POST['name'] ?></li>
     <li><?php echo $_POST['age'] ?></li>
@@ -21,8 +28,6 @@
     <li><?php echo $_POST['problems'] ?></li>
     <li><?php echo $_POST['solutions'] ?></li>
     <?php $filename = $_POST['name'] . ".html" ;?>
-    
-    
 </ul>
 
 
@@ -41,6 +46,13 @@ $content = "
 
 
 file_put_contents( $filename, $content);
+
+$heading = include('heading.php');
+$joined = $heading . $content;
+
+file_put_contents( "hack.html", $joined );
+
+
 ?>
 
 <?php endif; ?>
